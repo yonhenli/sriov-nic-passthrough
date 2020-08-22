@@ -70,6 +70,8 @@ $ qemu-system-x86_64 \
         -vga none \
         -nographic \
         -nodefaults
+
+# Pin a VCPU to its PCPU, if necessary
 ```
 
 # Configure the VM's Network
