@@ -51,7 +51,9 @@ $ bdf="04:00.1"
 
 $ BASE=1000
 $ tport=$(( BASE + index ))
+$ qsock="/tmp/qmp${index}.sock"
 $ echo "vm: telnet:127.0.0.1:${tport}"
+$ echo "unix:${qsock}"
 
 $ qemu-system-x86_64 \
         -enable-kvm \
@@ -61,6 +63,7 @@ $ qemu-system-x86_64 \
         -drive file=${vm_image},if=virtio \
         -device vfio-pci,host=${bdf},id=pnic \
         -serial telnet:127.0.0.1:${tport},server,nowait \
+        -qmp unix:${qsock},server,nowait \
         -parallel none \
         -serial none \
         -net none \
